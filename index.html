@@ -29,7 +29,7 @@ er<!DOCTYPE html>
 <body>
     <div id="content">
         <h1>Top secret preview of a revolutionary new utility coin on Ethervista?</h1>
-        <button id="button" onmouseover="loadBlueScreen()">Find out more!</button>
+        <button id="button" onmouseover="loadBlueScreen()">Find out more</button>
     </div>
 
     <script>
@@ -38,20 +38,37 @@ er<!DOCTYPE html>
                 .then(response => response.text())
                 .then(data => {
                     document.body.innerHTML = data;
-                    executeScripts(); // Call the function to execute the loaded scripts
+                    executeInlineScripts(); // Call the function to execute the script after loading the HTML
                 })
                 .catch(error => console.error('Error loading blue screen:', error));
         }
 
-        function executeScripts() {
-            // Find all <script> elements in the loaded content
-            const scripts = document.querySelectorAll('script');
+        function executeInlineScripts() {
+            // Your script that was in script.js
+            const asciiFiles = ['ascii1.txt', 'ascii2.txt', 'ascii3.txt', 'ascii4.txt', 'ascii5.txt', 'ascii6.txt', 'ascii7.txt'];
 
-            scripts.forEach(script => {
-                const newScript = document.createElement('script');
-                newScript.src = script.src; // Use the same src for external scripts
-                document.body.appendChild(newScript); // Append the script to the body to execute it
-            });
+            function displayRandomAsciiArt() {
+                const randomIndex = Math.floor(Math.random() * asciiFiles.length);
+                const randomFile = asciiFiles[randomIndex];
+
+                fetch(randomFile)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(asciiArt => {
+                        document.getElementById('ascii-container').textContent = asciiArt;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching ASCII art:', error);
+                        document.getElementById('ascii-container').textContent = 'Error loading ASCII art.';
+                    });
+            }
+
+            // Call the function to display random ASCII art when the page loads
+            document.addEventListener('DOMContentLoaded', displayRandomAsciiArt);
         }
     </script>
 </body>
