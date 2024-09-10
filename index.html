@@ -32,43 +32,53 @@
         <button id="button" onmouseover="loadBlueScreen()">Find out more</button>
     </div>
 
-    <script>
-        function loadBlueScreen() {
+  <script>
+        function replaceContentAndLoadAsciiArt() {
+            // Fetch the external HTML file
             fetch('bluescreen.html')
                 .then(response => response.text())
                 .then(data => {
+                    // Replace the current content with the fetched HTML
                     document.body.innerHTML = data;
-                    executeInlineScripts(); // Call the function to execute the script after loading the HTML
+
+                    // After replacing the content, load the ASCII art
+                    loadRandomAsciiArt();
                 })
-                .catch(error => console.error('Error loading blue screen:', error));
+                .catch(error => console.error('Error loading HTML content:', error));
         }
 
-        function executeInlineScripts() {
-            // Your script that was in script.js
+        function loadRandomAsciiArt() {
+            // Define an array with the filenames of the ASCII art files
             const asciiFiles = ['ascii1.txt', 'ascii2.txt', 'ascii3.txt', 'ascii4.txt', 'ascii5.txt', 'ascii6.txt', 'ascii7.txt'];
 
-            function displayRandomAsciiArt() {
-                const randomIndex = Math.floor(Math.random() * asciiFiles.length);
-                const randomFile = asciiFiles[randomIndex];
+            // Select a random file from the list
+            const randomIndex = Math.floor(Math.random() * asciiFiles.length);
+            const randomFile = asciiFiles[randomIndex];
 
-                fetch(randomFile)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.text();
-                    })
-                    .then(asciiArt => {
-                        document.getElementById('ascii-container').textContent = asciiArt;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching ASCII art:', error);
-                        document.getElementById('ascii-container').textContent = 'Error loading ASCII art.';
-                    });
-            }
-
-            // Call the function to display random ASCII art when the page loads
-            document.addEventListener('DOMContentLoaded', displayRandomAsciiArt);
+            // Fetch the content of the selected ASCII art file
+            fetch(randomFile)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text(); // Return the content as text
+                })
+                .then(asciiArt => {
+                    // Display the fetched ASCII art in the HTML element
+                    const asciiContainer = document.getElementById('ascii-container');
+                    if (asciiContainer) {
+                        asciiContainer.textContent = asciiArt;
+                    } else {
+                        console.error('ASCII container not found in the loaded HTML');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching ASCII art:', error);
+                    const asciiContainer = document.getElementById('ascii-container');
+                    if (asciiContainer) {
+                        asciiContainer.textContent = 'Error loading ASCII art.';
+                    }
+                });
         }
     </script>
 </body>
