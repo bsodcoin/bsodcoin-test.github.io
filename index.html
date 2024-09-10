@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Screen of Death</title>
+    <style>
+        body {
+            background-color: #0000AA; /* Classic BSOD blue */
+            color: white;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 16px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding-top: 10px;
+            text-align: left;
+        }
+        .ascii-art {
+            font-size: 8px;
+            line-height: 1;
+            font-family: monospace;
+            white-space: pre;
+            text-align: center;
+            margin-top: 40px;
+        }
+	.header {
+	    display: table; /* keep the background color wrapped tight */
+	    margin: 0px auto 0px auto;
+            background-color: #C0C0C0; /* Grey background */
+            color: #0000AA; /* Blue text */
+            padding: 1px 1px; /* Padding around the text */
+            font-size: 16px; /* Same font size as the rest of the text */
+            margin-bottom: 1px; /* Space below the header */
+            text-align: center;
+        }
+	.blinking-cursor {
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to {
+                color: transparent;
+            }
+            50% {
+                color: white;
+            }
+        }
+    </style>
+</head>
+<body>
+	<div class="header"><b>$BSOD</b></div>
+    <div class="container">
+        <p>Ethereum.exe has encountered an error and has been shut down to prevent damage to your blockchain.</p>
+        
+        <p>If this is the first time you've seen this error screen, try turning your blockchain on and off again. If this screen appears again, follow these steps:</p>
+        
+        <p>Check that you have enough $BSOD tokens in your wallet of choice. If you do not have any $BSOD tokens, please use the contract address below to buy them from Ethervista.</p>
+
+        <p>If problems continue, disable or remove any other possible tokens from your wallet and use the funds to purchase more $BSOD tokens. If problems still persist, please refer to the official Twitter page linked below</p>
+        
+        <p>Technical Information:</p>
+        
+        <p>*** Token address: <a href="https://dexscreener.com/ethereum/0x0f7fff4162e5ec7d791b20f7f0905267c5b8f5fc" style="color: white;">0xFc3eA344C87B35CBDE20f0341Da8825C5A16441c</a></p>
+	<p>*** Telegram: <a href="https://t.me/BSOD_Vista" style="color: white;">https://t.me/BSOD_Vista</a></p>
+	<p>*** Twitter: <a href="https://x.com/bsodcrypto" style="color: white;">https://x.com/bsodcrypto </a></p>
+
+	<p>Press F5 to continue <span class="blinking-cursor">_</span></p>
+        
+    </div>
+    <div id="ascii-container" class="ascii-art">
+    </div>
+    <script src="script.js"></script>
+
+</body></html>
